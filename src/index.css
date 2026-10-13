@@ -1,0 +1,120 @@
+:root {
+  color-scheme: light;
+  --fundo: #f4f4f2;
+  --superficie: #fcfcfb;
+  --borda: #e2e1dc;
+  --texto-1: #0b0b0b;
+  --texto-2: #52514e;
+  --grade: #ecebe7;
+  --eixo: #b9b8b1;
+  --serie-1: #2a78d6;
+  --destaque: #2a78d6;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--texto-1);
+  background: var(--fundo);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --fundo: #121211;
+    --superficie: #1a1a19;
+    --borda: #2e2e2c;
+    --texto-1: #ffffff;
+    --texto-2: #c3c2b7;
+    --grade: #262624;
+    --eixo: #5b5a55;
+    --serie-1: #3987e5;
+    --destaque: #3987e5;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --fundo: #121211;
+  --superficie: #1a1a19;
+  --borda: #2e2e2c;
+  --texto-1: #ffffff;
+  --texto-2: #c3c2b7;
+  --grade: #262624;
+  --eixo: #5b5a55;
+  --serie-1: #3987e5;
+  --destaque: #3987e5;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fundo); }
+
+main { max-width: 1120px; margin: 0 auto; padding: 32px 16px 48px; }
+header h1 { margin: 0 0 8px; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+header p, footer p { color: var(--texto-2); max-width: 70ch; margin: 0; }
+footer { margin-top: 32px; font-size: 0.85rem; }
+
+.painel {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  margin-top: 28px;
+  align-items: start;
+}
+
+.formulario, .indicador, .grafico {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+}
+
+.formulario { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.formulario label { display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; color: var(--texto-2); }
+.formulario strong { color: var(--texto-1); }
+.entrada {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--borda); border-radius: 8px; padding: 0 10px; background: var(--fundo);
+}
+.entrada:focus-within { outline: 2px solid var(--destaque); outline-offset: 1px; }
+.entrada em { font-style: normal; font-size: 0.85rem; }
+.entrada input {
+  flex: 1; min-width: 0; border: 0; background: transparent; color: var(--texto-1);
+  font: inherit; font-size: 1rem; padding: 9px 0; outline: none;
+}
+input[type='range'] { accent-color: var(--destaque); }
+button {
+  font: inherit; font-size: 0.9rem; padding: 10px 12px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--destaque); background: transparent; color: var(--destaque); font-weight: 600;
+}
+button:hover { background: color-mix(in srgb, var(--destaque) 10%, transparent); }
+
+.resultados { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.indicadores { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.indicador { padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
+.indicador span { font-size: 0.85rem; color: var(--texto-2); }
+.indicador strong { font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+.indicador small { color: var(--texto-2); font-size: 0.78rem; }
+
+.grafico { margin: 0; padding: 18px 16px 12px; }
+.grafico h2 { margin: 0; font-size: 1.05rem; }
+.grafico figcaption p { margin: 2px 0 0; color: var(--texto-2); font-size: 0.85rem; }
+.area-grafico { height: 340px; margin-top: 8px; }
+
+.dica {
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 8px;
+  padding: 8px 10px; display: flex; flex-direction: column; gap: 2px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.12);
+}
+.dica strong { font-size: 1rem; font-variant-numeric: tabular-nums; }
+.dica span { font-size: 0.8rem; color: var(--texto-2); display: flex; align-items: center; gap: 6px; }
+.chave { display: inline-block; width: 12px; height: 2px; background: var(--serie-1); }
+
+.tabela { margin-top: 8px; font-size: 0.85rem; color: var(--texto-2); }
+.tabela summary { cursor: pointer; }
+.tabela table { border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.tabela th, .tabela td { text-align: right; padding: 4px 14px 4px 0; border-bottom: 1px solid var(--grade); }
+.tabela td { color: var(--texto-1); }
+
+.aviso { color: var(--texto-2); }
+
+@media (max-width: 800px) {
+  .painel { grid-template-columns: 1fr; }
+  .area-grafico { height: 280px; }
+}
