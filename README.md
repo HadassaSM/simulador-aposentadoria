@@ -1,8 +1,8 @@
 # 🧮 Simulador de Aposentadoria
 
-[![CI e deploy](https://github.com/<seu-usuario>/simulador-aposentadoria/actions/workflows/deploy.yml/badge.svg)](https://github.com/<seu-usuario>/simulador-aposentadoria/actions/workflows/deploy.yml)
+[![CI e deploy](https://github.com/HadassaSM/simulador-aposentadoria/actions/workflows/deploy.yml/badge.svg)](https://github.com/HadassaSM/simulador-aposentadoria/actions/workflows/deploy.yml)
 
-**▶ Acesse online: https://<seu-usuario>.github.io/simulador-aposentadoria/**
+**▶ Acesse online: https://HadassaSM.github.io/simulador-aposentadoria/**
 
 Aplicação web em **React + TypeScript** que calcula quanto é preciso acumular para receber uma **renda vitalícia** e qual o **aporte mensal** necessário para chegar lá, usando matemática atuarial de verdade em vez da regra dos "4%".
 
@@ -13,7 +13,7 @@ Aplicação web em **React + TypeScript** que calcula quanto é preciso acumular
 3. **Aporte necessário**: série de pagamentos mensais que, capitalizada à taxa real, atinge a reserva.
 4. **Gráfico**: evolução do saldo com o *seu* aporte e, depois da aposentadoria, os saques da renda. Assim dá para ver até que idade o dinheiro dura sem o mutualismo de uma renda vitalícia.
 
-Os mesmos cálculos estão disponíveis como API REST no projeto [atuaria-api](https://github.com/<seu-usuario>/atuaria-api).
+Os mesmos cálculos estão disponíveis como API REST no projeto [atuaria-api](https://github.com/HadassaSM/atuaria-api).
 
 ## Tecnologias
 
