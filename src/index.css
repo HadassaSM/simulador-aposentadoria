@@ -118,3 +118,29 @@ button:hover { background: color-mix(in srgb, var(--destaque) 10%, transparent);
   .painel { grid-template-columns: 1fr; }
   .area-grafico { height: 280px; }
 }
+
+.conferencia {
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 12px; padding: 16px;
+}
+.conferencia header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.conferencia h2 { margin: 0; font-size: 1.05rem; }
+.conferencia a { color: var(--destaque); font-size: 0.85rem; }
+.conferencia table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.conferencia th { text-align: right; color: var(--texto-2); font-weight: 500; font-size: 0.8rem; padding: 4px 0 4px 12px; }
+.conferencia td { text-align: right; padding: 6px 0 6px 12px; border-top: 1px solid var(--grade); }
+.conferencia td:first-child { text-align: left; padding-left: 0; color: var(--texto-2); }
+.conf-status { margin: 10px 0 0; font-size: 0.88rem; color: var(--texto-2); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.conf-ok { color: #2e7d32; font-weight: 600; }
+.conf-erro { color: #b3261e; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .conf-ok { color: #6fcf73; }
+  :root:not([data-theme='light']) .conf-erro { color: #f2827a; }
+}
+:root[data-theme='dark'] .conf-ok { color: #6fcf73; }
+:root[data-theme='dark'] .conf-erro { color: #f2827a; }
+.girando {
+  width: 12px; height: 12px; border-radius: 50%; display: inline-block;
+  border: 2px solid var(--grade); border-top-color: var(--destaque); animation: girar 0.8s linear infinite;
+}
+@keyframes girar { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .girando { animation: none; } }

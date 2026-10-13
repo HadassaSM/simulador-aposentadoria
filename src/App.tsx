@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
+import { ConferenciaApi } from './components/ConferenciaApi'
 import { GraficoSaldo } from './components/GraficoSaldo'
 import { simular, type Entrada } from './lib/atuaria'
 import { anos, moeda } from './lib/formato'
+import { useConferenciaApi } from './lib/useConferenciaApi'
 
 interface Campo {
   chave: keyof Entrada
@@ -33,6 +35,7 @@ export default function App() {
   const [entrada, setEntrada] = useState<Entrada>(INICIAL)
   const valida = entrada.idadeAposentadoria > entrada.idadeAtual
   const r = useMemo(() => (valida ? simular(entrada) : null), [entrada, valida])
+  const conferencia = useConferenciaApi(valida ? entrada : null)
 
   const alterar = (chave: keyof Entrada, valor: number) =>
     setEntrada((e) => ({ ...e, [chave]: Number.isFinite(valor) ? valor : 0 }))
@@ -118,6 +121,11 @@ export default function App() {
               serie={r.serie}
               reservaNecessaria={r.reservaNecessaria}
               idadeAposentadoria={entrada.idadeAposentadoria}
+            />
+            <ConferenciaApi
+              estado={conferencia}
+              reservaLocal={r.reservaNecessaria}
+              aporteLocal={r.aporteNecessario}
             />
           </div>
         ) : (

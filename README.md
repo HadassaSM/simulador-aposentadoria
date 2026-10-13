@@ -13,11 +13,18 @@ Aplicação web em **React + TypeScript** que calcula quanto é preciso acumular
 3. **Aporte necessário**: série de pagamentos mensais que, capitalizada à taxa real, atinge a reserva.
 4. **Gráfico**: evolução do saldo com o *seu* aporte e, depois da aposentadoria, os saques da renda. Assim dá para ver até que idade o dinheiro dura sem o mutualismo de uma renda vitalícia.
 
-Os mesmos cálculos estão disponíveis como API REST no projeto [atuaria-api](https://github.com/HadassaSM/atuaria-api).
+## Integração com a API
+
+O simulador calcula tudo **no navegador**, para responder instantaneamente a cada alteração. Em paralelo, envia os mesmos dados para a [**Atuária API**](https://github.com/HadassaSM/atuaria-api) (Python/FastAPI, publicada no Render) e mostra, no painel *Conferência com a Atuária API*, se as duas implementações chegam ao mesmo resultado.
+
+- As consultas esperam 600 ms após a última digitação, e uma requisição que ficou obsoleta é cancelada (`AbortController`).
+- Cada resposta fica associada à entrada que a gerou, para que um valor antigo nunca seja comparado com um novo.
+- Como o plano gratuito do Render hiberna, depois de 3 s o painel avisa que o servidor está "acordando".
+- O endereço da API pode ser trocado com a variável `VITE_API_URL`.
 
 ## Tecnologias
 
-React 19 · TypeScript · Vite · Recharts · Vitest · Oxlint · GitHub Actions · GitHub Pages
+React 19 · TypeScript · Vite · Recharts · Vitest · Fetch API · Oxlint · GitHub Actions · GitHub Pages
 
 ## Como executar
 
@@ -34,6 +41,9 @@ npm run build     # build de produção em dist/
 src/
 ├── lib/atuaria.ts          # cálculos atuariais (funções puras, testadas)
 ├── lib/formato.ts          # formatação de moeda e idade (pt-BR)
+├── lib/api.ts              # cliente da Atuária API (testado com fetch simulado)
+├── lib/useConferenciaApi.ts # hook: debounce, cancelamento e estados da consulta
+├── components/ConferenciaApi.tsx
 ├── components/GraficoSaldo.tsx
 └── App.tsx                 # formulário e indicadores
 ```
